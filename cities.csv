@@ -1,53 +1,54 @@
-City,Country,Region,lat,lng,contactless_supported,mobile_wallet_supported,accepted_cards,transit_card_native_apple,transit_card_native_google,notes,other
-London,United Kingdom,Europe,51.5074456,-0.1277653,Yes,Yes,Visa; Mastercard; Maestro; AmEx,No,No,All TfL within London zones + Heathrow Express. Only buses are not tap in + tap out.,
-Manchester,United Kingdom,Europe,53.4794892,-2.2451148,Yes,Yes,Visa; Mastercard; Maestro,No,No,For bus and tram travel,
-Edinburgh,United Kingdom,Europe,55.9533456,-3.1883749,Yes,Yes,Visa; Mastercard; Maestro,No,No,For bus and tram travel. Only advertises that it doesn't accept AmEx - would be cautious about Discover as well though.,
-Dublin,Ireland,Europe,53.3493795,-6.2605593,No,No,,No,No,Purchase a Leap card or individual tickets at stations or on buses.,
-Paris,France,Europe,48.8588897,2.320041,No,No,,Yes,No,Add Navigo card through Apple wallet App.,
-Marseille,France,Europe,43.2961743,5.3699525,Yes,Yes,Visa; Mastercard; Conduent,No,No,"Can use on ferry, tram, bus, and subway - tap-in only",
-Brussels,Belgium,Europe,50.8465573,4.351697,Yes,Yes,Any,No,No,"Can use on STIB-MIVB bus, tram, and subway",
-Zurich,Switzerland,Europe,47.3744489,8.5410422,No,No,,No,No,Can buy tickets or passes at each station.,
-Geneva,Switzerland,Europe,46.2017559,6.1466014,No,No,,No,No,Can buy tickets or passes at each station.,
-Tallinn,Estonia,Europe,59.4372419,24.7572802,Yes,Yes,Visa; Mastercard; Maestro,No,No,For bus transport,
-Tartu,Estonia,Europe,58.3779528,26.7290023,Yes,Yes,Visa; Mastercard; Maestro,No,No,For bus transport,
-Milan,Italy,Europe,45.4641943,9.1896346,Yes,Yes,Visa; Mastercard; AmEx; Maestro; Vpay,No,No,ATM Transport and the Malpensa Express services only,
-Rome,Italy,Europe,41.8933203,12.4829321,Yes,Yes,Visa; Mastercard; AmEx; JCB; UnionPay,No,No,"Good on Atac surface lines including Roma Tpl buses, on the turnstiles of all stations of lines A, B/B1, C and of the Metromare, Roma-Viterbo and Termini-Centocelle railways, as well as on board of all vehicles of the Termini-Centocelle line.",
-Siena,Italy,Europe,43.167206,11.467561,Yes,Yes,Visa; Mastercard; AmEx,No,No,Bus and Tram service,
-Torino,Italy,Europe,45.0677551,7.6824892,Yes,Yes,Visa; Mastercard; AmEx; Maestro,No,No,On blue-yellow buses,
-Tuscany,Italy,Europe,43.4586541,11.1389204,Yes,Yes,Visa; Mastercard; AmEx,No,No,Bus and Tram service throughout all of Tuscany.,https://www.at-bus.it/en/tiptap
-Munich,Germany,Europe,48.1371079,11.5753822,No,No,,No,No,MVV-Online Ticket or Paper ticket for transit,
-Barcelona,Spain,Europe,41.3825802,2.177073,Yes,Yes,Visa; Mastercard; AmEx,No,No,"Works for all buses, but does mention just 'some' of the metro stations have contactless readers for access.",
-Madrid,Spain,Europe,40.416782,-3.703507,No,No,,No,No,Only have loadable card or single-use tickets.,
-Singapore,Singapore,Asia,1.357107,103.8194992,Yes,Yes,Visa; Mastercard; AmEx; NETS,No,No,,
-New York City,United States,North America,40.7127281,-74.0060152,Yes,Yes,Visa; Mastercard; AmEx; Discover; UnionPay; JCB,No,No,For subway and buses only.,
-Washington DC,United States,North America,38.8950368,-77.0365427,Yes,Yes,Visa; Mastercard; AmEx; Discover,Yes,Yes,"Contactless cards and Apple, Google, and Samsung Pay only work on the Metro subway. Transit Card Native to Apple and Google Pay work for Metro rail and bus.",
-Chicago,United States,North America,41.8755616,-87.6244212,Yes,Yes,Any,No,No,Only for CTA,
-Boston,United States,North America,42.3554334,-71.060511,Yes,Yes,Any,No,No,"For MBTA, and advertises for any contactless card.",
-San Francisco,United States,North America,37.7792588,-122.4193286,Yes,Yes,Visa; Mastercard; AmEx; Discover,Yes,Yes,Transit Card Native to Apple and Google Pay is for all San Francisco public transit. The other forms of contactless payment can ONLY be used on BART.,
-Los Angeles,United States,North America,34.0536909,-118.242766,No,No,,Yes,No,Can be used for metro and buses.,
-Seattle,United States,North America,47.6038321,-122.330062,No,No,,No,Yes,"For buses, monorail, light rail, ferries, and the Sounder Train.",
-Austin,United States,North America,30.2711286,-97.7436995,No,No,,No,No,,
-Nashville,United States,North America,36.1622767,-86.7742984,Yes,Yes,Visa; Mastercard; Discover,No,No,For buses only,
-Sacremento,United States,North America,26.5730129,-81.9586372,Yes,Yes,Visa; Mastercard; AmEx;Discover,No,No,"For buses only, technology for light rail to come in late 2025.",
-Denver,United States,North America,39.7392364,-104.984862,No,No,,No,No,Transit Card is contactless.,https://www.rtd-denver.com/fares-passes/myride
-Phoenix,United States,North America,33.4484367,-112.074141,No,No,,No,No,Physical or digital transit card.,https://www.valleymetro.org/fares/fare-technology
+City,Country,Region,lat,lng,contactless_supported,mobile_wallet_supported,accepted_cards,transit_card_native_apple,transit_card_native_google,notes,other,Type
+London,United Kingdom,Europe,51.5074456,-0.1277653,Yes,Yes,Visa; Mastercard; Maestro; AmEx,No,No,All TfL within London zones + Heathrow Express. Only buses are not tap in + tap out.,,City
+Manchester,United Kingdom,Europe,53.4794892,-2.2451148,Yes,Yes,Visa; Mastercard; Maestro,No,No,For bus and tram travel,,City
+Edinburgh,United Kingdom,Europe,55.9533456,-3.1883749,Yes,Yes,Visa; Mastercard; Maestro,No,No,For bus and tram travel. Only advertises that it doesn't accept AmEx - would be cautious about Discover as well though.,,City
+Dublin,Ireland,Europe,53.3493795,-6.2605593,No,No,,No,No,Purchase a Leap card or individual tickets at stations or on buses.,,City
+Paris,France,Europe,48.8588897,2.320041,No,No,,Yes,No,Add Navigo card through Apple wallet App.,,City
+Marseille,France,Europe,43.2961743,5.3699525,Yes,Yes,Visa; Mastercard; Conduent,No,No,"Can use on ferry, tram, bus, and subway - tap-in only",,City
+Brussels,Belgium,Europe,50.8465573,4.351697,Yes,Yes,Any,No,No,"Can use on STIB-MIVB bus, tram, and subway",,City
+Zurich,Switzerland,Europe,47.3744489,8.5410422,No,No,,No,No,Can buy tickets or passes at each station.,,City
+Geneva,Switzerland,Europe,46.2017559,6.1466014,No,No,,No,No,Can buy tickets or passes at each station.,,City
+Tallinn,Estonia,Europe,59.4372419,24.7572802,Yes,Yes,Visa; Mastercard; Maestro,No,No,For bus transport,,City
+Tartu,Estonia,Europe,58.3779528,26.7290023,Yes,Yes,Visa; Mastercard; Maestro,No,No,For bus transport,,City
+Milan,Italy,Europe,45.4641943,9.1896346,Yes,Yes,Visa; Mastercard; AmEx; Maestro; Vpay,No,No,ATM Transport and the Malpensa Express services only,,City
+Rome,Italy,Europe,41.8933203,12.4829321,Yes,Yes,Visa; Mastercard; AmEx; JCB; UnionPay,No,No,"Good on Atac surface lines including Roma Tpl buses, on the turnstiles of all stations of lines A, B/B1, C and of the Metromare, Roma-Viterbo and Termini-Centocelle railways, as well as on board of all vehicles of the Termini-Centocelle line.",,City
+Siena,Italy,Europe,43.167206,11.467561,Yes,Yes,Visa; Mastercard; AmEx,No,No,Bus and Tram service,,City
+Torino,Italy,Europe,45.0677551,7.6824892,Yes,Yes,Visa; Mastercard; AmEx; Maestro,No,No,On blue-yellow buses,,City
+Tuscany,Italy,Europe,43.4586541,11.1389204,Yes,Yes,Visa; Mastercard; AmEx,No,No,Bus and Tram service throughout all of Tuscany.,https://www.at-bus.it/en/tiptap,City
+Munich,Germany,Europe,48.1371079,11.5753822,No,No,,No,No,MVV-Online Ticket or Paper ticket for transit,,City
+Barcelona,Spain,Europe,41.3825802,2.177073,Yes,Yes,Visa; Mastercard; AmEx,No,No,"Works for all buses, but does mention just 'some' of the metro stations have contactless readers for access.",,City
+Madrid,Spain,Europe,40.416782,-3.703507,No,No,,No,No,Only have loadable card or single-use tickets.,,City
+Singapore,Singapore,Asia,1.357107,103.8194992,Yes,Yes,Visa; Mastercard; AmEx; NETS,No,No,,,City
+New York City,United States,North America,40.7127281,-74.0060152,Yes,Yes,Visa; Mastercard; AmEx; Discover; UnionPay; JCB,No,No,For subway and buses only.,,City
+Washington DC,United States,North America,38.8950368,-77.0365427,Yes,Yes,Visa; Mastercard; AmEx; Discover,Yes,Yes,"Contactless cards and Apple, Google, and Samsung Pay only work on the Metro subway. Transit Card Native to Apple and Google Pay work for Metro rail and bus.",,City
+Chicago,United States,North America,41.8755616,-87.6244212,Yes,Yes,Any,No,No,Only for CTA,,City
+Boston,United States,North America,42.3554334,-71.060511,Yes,Yes,Any,No,No,"For MBTA, and advertises for any contactless card.",,City
+San Francisco,United States,North America,37.7792588,-122.4193286,Yes,Yes,Visa; Mastercard; AmEx; Discover,Yes,Yes,Transit Card Native to Apple and Google Pay is for all San Francisco public transit. The other forms of contactless payment can ONLY be used on BART.,,City
+Los Angeles,United States,North America,34.0536909,-118.242766,No,No,,Yes,No,Can be used for metro and buses.,,City
+Seattle,United States,North America,47.6038321,-122.330062,No,No,,No,Yes,"For buses, monorail, light rail, ferries, and the Sounder Train.",,City
+Austin,United States,North America,30.2711286,-97.7436995,No,No,,No,No,,,City
+Nashville,United States,North America,36.1622767,-86.7742984,Yes,Yes,Visa; Mastercard; Discover,No,No,For buses only,,City
+Sacremento,United States,North America,26.5730129,-81.9586372,Yes,Yes,Visa; Mastercard; AmEx;Discover,No,No,"For buses only, technology for light rail to come in late 2025.",,City
+Denver,United States,North America,39.7392364,-104.984862,No,No,,No,No,Transit Card is contactless.,https://www.rtd-denver.com/fares-passes/myride,City
+Phoenix,United States,North America,33.4484367,-112.074141,No,No,,No,No,Physical or digital transit card.,https://www.valleymetro.org/fares/fare-technology,City
 Philadelphia,United States,North America,39.9527237,-75.1635262,Yes,Yes,Visa; Mastercard; AmEx; Discover,No,No,"SEPTA accepts contactless payment (credit/debit card or Apple/Google/Samsung Pay) for travel on bus, Metro and Regional Rail. 
-*Contactless payment not available for travel to/from New Jersey.",https://wwww.septa.org/fares/ways-to-pay/
-New Orleans,United States,North America,29.9559145,-90.0730259,No,No,,No,No,,https://tokentransit.com/agency/neworleansrta
-Atlanta,United States,North America,33.7544657,-84.3898151,No,No,,No,No,Can add Breeze card to Apple and Google wallets through Breeze app.,https://itsmarta.com/breeze-mobile.aspx
-Baltimore,United States,North America,39.2908816,-76.610759,No,No,,No,No,Pay using the CharmPass,https://www.mta.maryland.gov/charmpass
-San Diego,United States,North America,32.7174202,-117.162772,Yes,Yes,Visa; Mastercard; Discover,No,No,"MTS and NCTD has rolled out contactless payments for all buses, Trolleys, the SPRINTER and COASTER.",https://www.ridepronto.com/contactless-payments
-Houston,United States,North America,29.7589382,-95.3676974,No,No,,No,No,,https://www.ridemetro.org/fares/all-about-fares
-Portland,United States,North America,45.5202471,-122.674194,Yes,Yes,Visa; Mastercard; AmEx; Discover,No,No,"We accept any bankcard (Visa, Mastercard, Discover or American Express) showing the contactless symbol contactless symbol. Tap your card on the Hop reader as you board to instantly pay the $2.80 Adult fare.",https://trimet.org/fares/bankcard.htm
-Miami,United States,North America,25.7741566,-80.1935973,Yes,Yes,Visa; Mastercard; AmEx,No,No,Riders can pay directly at Metrorail fare gates and Metrobus fare boxes using their contactless-enabled bankcards or digital wallets instead of buying an EASY Card or EASY Ticket.,https://www.miamidade.gov/global/service.page?Mduid_service=ser1565197498854306
-Vancouver,Canada,North America,49.2608724,-123.113952,Yes,Yes,Visa; Mastercard; AmEx; Interac Debit,No,No,"If you are buying one single adult ticket, you can save time and go paperless by tapping your contactless debit, credit card, or mobile wallet right at the SkyTrain fare gate or card reader on bus or West Coast Express.",https://www.translink.ca/transit-fares/pricing-and-fare-zones
-Montreal,Canada,North America,45.5031824,-73.5698065,No,No,,No,No,OPUS card. Contactless planned for 2026.,"https://www.masabi.com/2025/07/16/artm-partners-with-masabi-to-deploy-a-new-fare-collection-solution/#:~:text=The%20solution%20is%20part%20of%20the%20Concerto,*%20Facilitates%20integration%20with%20other%20mobility%20services"
-Mexico City,Mexico,North America,19.3207722,-99.1514678,Yes,Yes,Visa; Mastercard; Europay,No,No,Metrobus and subway only.,
-Hong Kong,Hong Kong,Asia,22.2793278,114.1628131,Yes,Yes,Visa; Mastercard; UnionPay,Yes,No,"For MTR service except for Airport Express stations, Light Rail and MTR Bus.",https://www.mtr.com.hk/en/customer/main/about_contactless.html
-Sydney,Australia,Asia,-33.8698439,151.2082848,Yes,Yes,Visa; Mastercard; AmEx,No,No,"Contactless payments can be used to pay for travel on public transport in Sydney, the Blue Mountains, Central Coast, the Hunter and the Illawarra.",https://transportnsw.info/tickets-fares/contactless-payments
-Minsk,Belarus,Europe,53.9024716,27.5618225,Yes,Yes,Any,No,No,Currently just for the Metro. By end of 2025 has been advertised to be ready for all forms of transport.,https://myuniver.org/en/articles/obschestvennyi-transport-v-minske-rukovodstvo-dlya-inostrannyh-studentov
-Skåne,Sweden,Europe,55.8472301,13.6339292,Yes,Yes,Any,No,No,"On our green city buses, you can tap your contactless bank card and enjoy unlimited travel within the city zone for one hour.",https://www.skanetrafiken.se/english/tickets-and-discount
-Turku,Finland,Europe,60.4515944,22.2669983,Yes,Yes,Visa; Mastercard; Eurocard,No,No,For all bus and water ferry rides.,
-Tehran,Iran,Middle East,35.6892523,51.3896004,No,No,,No,No,,
-Prague,Czech Republic,Europe,50.0596288,14.4464593,No,No,,No,No,"Payment is contactless on board of transit, but it is for specific ticket.",https://www.dpp.cz/en/fares/cashless-payment-of-fare
-Auckland,New Zealand,Asia,-36.852095,174.7631803,Yes,Yes,Visa; Mastercard; AmEx; UnionPay,No,No,"Can be used for AT buses, trains, and most ferries.",
+*Contactless payment not available for travel to/from New Jersey.",https://wwww.septa.org/fares/ways-to-pay/,City
+New Orleans,United States,North America,29.9559145,-90.0730259,No,No,,No,No,,https://tokentransit.com/agency/neworleansrta,City
+Atlanta,United States,North America,33.7544657,-84.3898151,No,No,,No,No,Can add Breeze card to Apple and Google wallets through Breeze app.,https://itsmarta.com/breeze-mobile.aspx,City
+Baltimore,United States,North America,39.2908816,-76.610759,No,No,,No,No,Pay using the CharmPass,https://www.mta.maryland.gov/charmpass,City
+San Diego,United States,North America,32.7174202,-117.162772,Yes,Yes,Visa; Mastercard; Discover,No,No,"MTS and NCTD has rolled out contactless payments for all buses, Trolleys, the SPRINTER and COASTER.",https://www.ridepronto.com/contactless-payments,City
+Houston,United States,North America,29.7589382,-95.3676974,No,No,,No,No,,https://www.ridemetro.org/fares/all-about-fares,City
+Portland,United States,North America,45.5202471,-122.674194,Yes,Yes,Visa; Mastercard; AmEx; Discover,No,No,"We accept any bankcard (Visa, Mastercard, Discover or American Express) showing the contactless symbol contactless symbol. Tap your card on the Hop reader as you board to instantly pay the $2.80 Adult fare.",https://trimet.org/fares/bankcard.htm,City
+Miami,United States,North America,25.7741566,-80.1935973,Yes,Yes,Visa; Mastercard; AmEx,No,No,Riders can pay directly at Metrorail fare gates and Metrobus fare boxes using their contactless-enabled bankcards or digital wallets instead of buying an EASY Card or EASY Ticket.,https://www.miamidade.gov/global/service.page?Mduid_service=ser1565197498854306,City
+Vancouver,Canada,North America,49.2608724,-123.113952,Yes,Yes,Visa; Mastercard; AmEx; Interac Debit,No,No,"If you are buying one single adult ticket, you can save time and go paperless by tapping your contactless debit, credit card, or mobile wallet right at the SkyTrain fare gate or card reader on bus or West Coast Express.",https://www.translink.ca/transit-fares/pricing-and-fare-zones,City
+Montreal,Canada,North America,45.5031824,-73.5698065,No,No,,No,No,OPUS card. Contactless planned for 2026.,"https://www.masabi.com/2025/07/16/artm-partners-with-masabi-to-deploy-a-new-fare-collection-solution/#:~:text=The%20solution%20is%20part%20of%20the%20Concerto,*%20Facilitates%20integration%20with%20other%20mobility%20services",City
+Mexico City,Mexico,North America,19.3207722,-99.1514678,Yes,Yes,Visa; Mastercard; Europay,No,No,Metrobus and subway only.,,City
+Hong Kong,Hong Kong,Asia,22.2793278,114.1628131,Yes,Yes,Visa; Mastercard; UnionPay,Yes,No,"For MTR service except for Airport Express stations, Light Rail and MTR Bus.",https://www.mtr.com.hk/en/customer/main/about_contactless.html,City
+Sydney,Australia,Asia,-33.8698439,151.2082848,Yes,Yes,Visa; Mastercard; AmEx,No,No,"Contactless payments can be used to pay for travel on public transport in Sydney, the Blue Mountains, Central Coast, the Hunter and the Illawarra.",https://transportnsw.info/tickets-fares/contactless-payments,City
+Minsk,Belarus,Europe,53.9024716,27.5618225,Yes,Yes,Any,No,No,Currently just for the Metro. By end of 2025 has been advertised to be ready for all forms of transport.,https://myuniver.org/en/articles/obschestvennyi-transport-v-minske-rukovodstvo-dlya-inostrannyh-studentov,City
+Skåne,Sweden,Europe,55.8472301,13.6339292,Yes,Yes,Any,No,No,"On our green city buses, you can tap your contactless bank card and enjoy unlimited travel within the city zone for one hour.",https://www.skanetrafiken.se/english/tickets-and-discount,City
+Turku,Finland,Europe,60.4515944,22.2669983,Yes,Yes,Visa; Mastercard; Eurocard,No,No,For all bus and water ferry rides.,,City
+Tehran,Iran,Middle East,35.6892523,51.3896004,No,No,,No,No,,,City
+Prague,Czech Republic,Europe,50.0596288,14.4464593,No,No,,No,No,"Payment is contactless on board of transit, but it is for specific ticket.",https://www.dpp.cz/en/fares/cashless-payment-of-fare,City
+Auckland,New Zealand,Asia,-36.852095,174.7631803,Yes,Yes,Visa; Mastercard; AmEx; UnionPay,No,No,"Can be used for AT buses, trains, and most ferries.",,City
+,Netherlands,Europe,52.1326,5.2913,Yes,Yes,Visa; Mastercard; Maestro; Vpay,No,No,Can be used for all public transport throughout the country. For trains it defaults to 2nd-class ticket.,,Country
