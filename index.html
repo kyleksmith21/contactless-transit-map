@@ -182,14 +182,6 @@
 
     <aside id="filters" aria-label="Filters">
       <div class="section">
-        <h2>Load data</h2>
-        <div class="row">
-          <input type="file" id="csvFile" accept=".csv" aria-label="Upload CSV file" />
-          <button id="reloadLocal" title="Reload ./cities.csv">Reload ./cities.csv</button>
-        </div>
-      </div>
-
-      <div class="section">
         <h2>Search</h2>
         <input class="inline-input" id="qCity" placeholder="City ( / to focus )" aria-label="Filter by city" />
         <input class="inline-input" id="qCountry" placeholder="Country" style="margin-top:8px" aria-label="Filter by country" />
@@ -579,13 +571,7 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
   const onFilterChanged = debounce(applyFiltersAndRender, 160);
 
   // Events
-  $$('#csvFile').addEventListener('change', async (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const text = await file.text();
-    loadCSV(text);
-  });
-  $$('#reloadLocal').addEventListener('click', tryLoadLocalCSV);
+  
 
   qCity.addEventListener('input', onFilterChanged);
   qCountry.addEventListener('input', onFilterChanged);
