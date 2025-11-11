@@ -3,7 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Global Contactless Transit Map — Retro</title>
+  <title>Transit Map</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./favicon.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="./favicon.png">
+    <meta name="theme-color" content="#0b0f14">
+
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -34,7 +40,6 @@
     html,body{height:100%; margin:0; background:var(--bg); color:var(--text); font-family:var(--sans); overflow-x:hidden}
     #app{display:grid; grid-template-columns:minmax(300px,380px) 1fr; grid-template-rows: 72px 1fr; height:100%; max-width:100vw; position:relative}
 
-    /* A subtle grain/scanline overlay for retro vibe */
     .noise{
       pointer-events:none; position:fixed; inset:0; opacity:.05; mix-blend-mode:overlay;
       background:
@@ -42,14 +47,13 @@
         url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="1" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.09"/></svg>');
     }
 
-    /* HEADER */
     header{
       grid-column:1/3; display:flex; align-items:center; justify-content:space-between; gap:12px;
       padding:0 18px; border-bottom:1px solid var(--border);
       background:linear-gradient(180deg, rgba(19,27,40,.9), rgba(10,14,20,.9));
       position:relative;
     }
-    header::after{ /* tiny neon underline */
+    header::after{
       content:""; position:absolute; left:0; right:0; bottom:-1px; height:1px; background:
       linear-gradient(90deg, transparent, var(--accent-2), transparent);
       opacity:.35;
@@ -76,7 +80,6 @@
       background:var(--panel-2); cursor:pointer; font-size:12px;
     }
 
-    /* SIDEBAR (glass) */
     #filters{
       grid-row:2; grid-column:1; background:rgba(20,28,40,.65); backdrop-filter: blur(10px) saturate(1.05);
       border-right:1px solid var(--border); overflow:auto; overflow-x:hidden;
@@ -102,13 +105,11 @@
     .chip input{accent-color:var(--accent-2);}
     .help{color:var(--muted); font-size:11px; margin-top:6px; line-height:1.35}
 
-    /* MAP */
     #map{grid-row:2; grid-column:2; height:100%}
     .leaflet-popup-content-wrapper{background:var(--panel); color:var(--text); border:1px solid var(--border); box-shadow:var(--shadow)}
     .leaflet-popup-tip{background:var(--panel); border:1px solid var(--border)}
     .leaflet-control-attribution{color:var(--muted)}
 
-    /* LEGEND + HUD */
     .legend {
       position:absolute; right:12px; bottom:12px; background:var(--panel); border:1px solid var(--border);
       border-radius:12px; padding:10px 12px; font-size:12px; line-height:1.4; max-width:min(60vw, 360px); box-shadow:var(--shadow)
@@ -117,7 +118,6 @@
     .marquee span{display:inline-block; padding-left:100%; animation: scroll 10s linear infinite}
     @keyframes scroll { to { transform: translateX(-100%); } }
 
-    /* FLOATING HUD for active filters */
     .hud{
       position:absolute; left:calc(300px + 12px); top:84px; right:16px; display:flex; flex-wrap:wrap; gap:8px; z-index:400;
       pointer-events:none;
@@ -128,7 +128,6 @@
     }
     .tag button{padding:2px 6px; font-size:11px}
 
-    /* COMMAND PALETTE */
     .palette{
       position:fixed; inset:0; display:none; place-items:center; background:rgba(0,0,0,.35); z-index:1000;
     }
@@ -146,7 +145,6 @@
     .palette li:hover{background:var(--panel-2); border:1px solid var(--border)}
     .kbd{font-family:var(--mono); font-size:11px; color:var(--muted); border:1px solid var(--border); padding:2px 6px; border-radius:6px; background:var(--panel-2)}
 
-    /* RESPONSIVE */
     @media (max-width: 1000px){
       #app{grid-template-columns: minmax(260px, 320px) 1fr;}
       .hud{left:calc(260px + 8px)}
@@ -167,11 +165,11 @@
         <div class="dot" aria-hidden="true"></div>
         <div>
           <h1>Global Contactless Transit Map</h1>
-          <div class="sub">Tap · Tag · Go — Explore cities supporting open-loop contactless and native wallets.</div>
+          <div class="sub">Tap · Tag · Go — Explore cities, states, and countries supporting open-loop contactless and native wallets.</div>
         </div>
       </div>
       <div class="controls">
-        <span id="count" class="pill" aria-live="polite">0 cities</span>
+        <span id="count" class="pill" aria-live="polite">0 places</span>
         <label class="toggle" title="Toggle theme">
           <input id="themeToggle" type="checkbox" aria-label="Toggle light theme" />
           <span>Theme</span>
@@ -183,7 +181,7 @@
     <aside id="filters" aria-label="Filters">
       <div class="section">
         <h2>Search</h2>
-        <input class="inline-input" id="qCity" placeholder="City ( / to focus )" aria-label="Filter by city" />
+        <input class="inline-input" id="qPlace" placeholder="City / State ( / to focus )" aria-label="Filter by place" />
         <input class="inline-input" id="qCountry" placeholder="Country" style="margin-top:8px" aria-label="Filter by country" />
         <select class="inline-input" id="qRegionSelect" style="margin-top:8px" aria-label="Filter by region">
           <option value="">All regions</option>
@@ -221,24 +219,25 @@
       <div class="section">
         <h2>Options</h2>
         <label class="chip"><input type="checkbox" id="autoZoom" checked> Auto-zoom to visible</label>
-        <label class="chip"><input type="checkbox" id="clusterMode" checked> Cluster nearby cities</label>
+        <label class="chip"><input type="checkbox" id="clusterMode" checked> Cluster nearby places</label>
       </div>
 
       <div class="section" style="font-size:12px;color:var(--muted)">
-        <strong>CSV Schema</strong>
-        <pre style="white-space:pre-wrap;line-height:1.5;color:var(--muted);background:var(--panel-2);padding:10px;border:1px solid var(--border);border-radius:10px;font-family:var(--mono)">City,Country,Region,lat,lng,contactless_supported,mobile_wallet_supported,accepted_cards,transit_card_native_apple,transit_card_native_google,notes,other
-London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Yes,No,"Add Navigo card through Apple wallet App.",https://tfl.gov.uk/</pre>
+        <strong>CSV Schema (now supports scope)</strong>
+        <pre style="white-space:pre-wrap;line-height:1.5;color:var(--muted);background:var(--panel-2);padding:10px;border:1px solid var(--border);border-radius:10px;font-family:var(--mono)">City/State,Country,Region,lat,lng,contactless_supported,mobile_wallet_supported,accepted_cards,transit_card_native_apple,transit_card_native_google,notes,other,area_type
+London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Yes,No,"Notes…",https://tfl.gov.uk/,city
+,United States,North America,37.6,-95.665,Yes,Yes,"Visa; Mastercard",No,No,"US-wide policy",https://www.usa.gov/,country
+Texas,United States,North America,31.0,-100.0,Yes,Yes,"Visa; Mastercard",No,No,"State-level row",https://tx.gov/,state</pre>
       </div>
     </aside>
 
-    <div id="map" role="application" aria-label="Map of cities supporting contactless and mobile wallets"></div>
+    <div id="map" role="application" aria-label="Map of places supporting contactless and mobile wallets"></div>
 
-    <!-- Active filters HUD -->
     <div class="hud" id="hud"></div>
   </div>
 
   <div class="legend" id="legend">
-    <div><strong>Markers:</strong> <span style="color:var(--green)">green</span> = Contactless, <span style="color:var(--red)">red</span> = Not contactless.</div>
+    <div><strong>Markers:</strong> <span style="color:var(--green)">green</span> = Contactless, <span style="color:var(--red)">red</span> = Not contactless. Bubble size: city < state < country.</div>
     <div class="marquee" id="ticker" style="display:none"><span>&nbsp;TAP • TAG • GO • TAP • TAG • GO •</span></div>
   </div>
 
@@ -278,9 +277,9 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
   const layerGroup = L.layerGroup();
   map.addLayer(clusterGroup);
 
-  // --- Zoom behavior constants (no street-level dives) ---
-  const CITY_ZOOM = 8;   // Single-city zoom target (metro scale)
-  const FIT_MAX_ZOOM = 7; // Cap fitBounds so it never goes street-level
+  // --- Zoom behavior constants ---
+  const CITY_ZOOM = 8;
+  const FIT_MAX_ZOOM = 7;
 
   // --- State ---
   let rows = [];    // parsed CSV rows (objects)
@@ -291,7 +290,7 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
   // UI refs
   const $$  = sel => document.querySelector(sel);
   const $$$ = sel => Array.from(document.querySelectorAll(sel));
-  const qCity = $$('#qCity');
+  const qPlace = $$('#qPlace');
   const qCountry = $$('#qCountry');
   const qRegionSelect = $$('#qRegionSelect');
   const autoZoom = $$('#autoZoom');
@@ -308,24 +307,27 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
   const paletteInput = $$('#paletteInput');
   const paletteList = $$('#paletteList');
 
-  // --- CSV loading ---
+  // --- CSV loading (tries cities.csv then data.csv) ---
   async function tryLoadLocalCSV() {
-    try {
-      const res = await fetch('./cities.csv', { cache: 'no-store' }); // same folder
-      if (!res.ok) throw new Error('Missing ./cities.csv');
-      const text = await res.text();
-      loadCSV(text);
-    } catch (e) {
-      console.warn('Could not auto-load ./cities.csv. Use the file picker.', e);
-      // still attempt to read URL params / restore state so UI feels alive
-      restoreStateFromURL();
-      restoreStateFromStorage();
+    const ts = `?ts=${Date.now()}`;
+    const candidates = [`./cities.csv${ts}`, `./data.csv${ts}`, `./data/cities.csv${ts}`];
+    for (const url of candidates) {
+      try {
+        const res = await fetch(url, { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const text = await res.text();
+        loadCSV(text);
+        return;
+      } catch (e) {
+        console.warn('Failed to load', url, e);
+      }
     }
+    console.error('No CSV found. Place cities.csv or data.csv next to index.html.');
   }
 
   function loadCSV(text) {
     const parsed = Papa.parse(text, { header: true, skipEmptyLines: true });
-    rows = parsed.data.map(cleanRow).filter(r => r.city && r.country);
+    rows = parsed.data.map(cleanRow).filter(r => (r.country && Number.isFinite(r.lat) && Number.isFinite(r.lng)));
     buildFacetSets(rows);
     buildCardsChips();
     buildRegionDropdown();
@@ -343,9 +345,10 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
     };
     const norm = v => (v||'').toString().trim();
     const split = v => norm(v).length ? norm(v).split(';').map(s=>s.trim()).filter(Boolean) : [];
-    const yn = v => norm(v); // keep Yes/No text
+    const yn = v => norm(v);
 
-    const city = pick(r, ['City','city']);
+    // Column A may be "City/State" (or legacy "City"/"State")
+    const cityState = pick(r, ['City/State','city/state','City','city','State','state','Place','place']);
     const country = pick(r, ['Country','country']);
     const region = pick(r, ['Region','region']);
     const lat = parseFloat(pick(r, ['lat','Lat','latitude','Latitude']));
@@ -357,10 +360,31 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
     const nativeGoogle = pick(r, ['transit_card_native_google','Transit_card_native_google']);
     const notes = pick(r, ['notes','Notes']);
     const other = pick(r, ['other','Other','website','Website','url','URL']);
+    // New scope column (accept multiple header names)
+    const areaTypeRaw = pick(r, ['area_type','Area_type','type','Type','level','Level','scope','Scope','granularity','Granularity','PlaceType']);
+
+    // Normalize scope
+    let area_type = norm(areaTypeRaw).toLowerCase();
+    if (!['city','state','country'].includes(area_type)) {
+      // Heuristic: if no city/state but has country -> country; else default city
+      area_type = norm(cityState) ? 'city' : (norm(country) ? 'country' : 'city');
+    }
+
+    const city_or_state = norm(cityState);
+    const country_norm = norm(country);
+
+    // Derive a display label depending on scope
+    let display_name = '';
+    if (area_type === 'country') {
+      display_name = country_norm;
+    } else {
+      display_name = city_or_state ? `${city_or_state}${country_norm ? ', ' + country_norm : ''}` : country_norm;
+    }
 
     return {
-      city: norm(city),
-      country: norm(country),
+      area_type,
+      city_or_state: city_or_state,
+      country: country_norm,
       region: norm(region),
       lat: Number.isFinite(lat) ? lat : undefined,
       lng: Number.isFinite(lng) ? lng : undefined,
@@ -370,14 +394,15 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
       transit_card_native_apple: yn(nativeApple),
       transit_card_native_google: yn(nativeGoogle),
       notes: norm(notes),
-      other: norm(other)
+      other: norm(other),
+      display_name
     };
   }
 
   function buildFacetSets(list){
     cardSet.clear(); regionSet.clear();
     list.forEach(r => {
-      r.accepted_cards.forEach(c => cardSet.add(c));
+      (r.accepted_cards||[]).forEach(c => cardSet.add(c));
       if (r.region) regionSet.add(r.region);
     });
   }
@@ -408,14 +433,23 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
     }
   }
 
+  function radiusForType(type){
+    switch ((type||'').toLowerCase()){
+      case 'country': return 12;
+      case 'state': return 9.5;
+      default: return 7.5; // city
+    }
+  }
+
   function markerForRow(r){
     const supported = (r.contactless_supported||'').toLowerCase() === 'yes';
     const color = supported ? '#22c55e' : '#ef4444';
     const marker = L.circleMarker([r.lat, r.lng], {
-      radius: 7, color, fillColor: color, fillOpacity: 0.78, weight: 1
+      radius: radiusForType(r.area_type),
+      color, fillColor: color, fillOpacity: 0.78, weight: 1
     });
 
-    const cardStr = r.accepted_cards.join('; ');
+    const cardStr = (r.accepted_cards||[]).join('; ');
     const desc = r.notes ? `<p style="margin:.25rem 0 0 0">${escapeHtml(r.notes)}</p>` : '';
     const webLinks = linksFromOther(r.other);
     const web = webLinks.length
@@ -426,12 +460,15 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
     const nativeAppleStr = r.transit_card_native_apple ? r.transit_card_native_apple : '';
     const nativeGoogleStr = r.transit_card_native_google ? r.transit_card_native_google : '';
 
+    const scopeLabel = r.area_type.charAt(0).toUpperCase() + r.area_type.slice(1);
+
     marker.bindPopup(`
       <div style="min-width:260px">
-        <div style="font-weight:600">${escapeHtml(r.city)}${r.country ? ', ' + escapeHtml(r.country) : ''}</div>
+        <div style="font-weight:600">${escapeHtml(r.display_name)}</div>
         ${r.region ? `<div style="font-size:12px;color:#9aa6b2; margin-top:2px">${escapeHtml(r.region)}</div>` : ''}
         <div style="height:1px;background:#1e2a3d;margin:8px 0"></div>
-        <div style="font-size:12px;color:#9aa6b2">Contactless: <strong style="color:inherit">${supported? 'Yes':'No'}</strong></div>
+        <div style="font-size:12px;color:#9aa6b2">Scope: <strong style="color:inherit">${escapeHtml(scopeLabel)}</strong></div>
+        <div style="font-size:12px;color:#9aa6b2;margin-top:2px">Contactless: <strong style="color:inherit">${supported? 'Yes':'No'}</strong></div>
         ${mobileStr ? `<div style="font-size:12px;margin-top:4px"><strong>Mobile wallet:</strong> ${escapeHtml(mobileStr)}</div>` : ''}
         ${cardStr? `<div style="font-size:12px;margin-top:4px"><strong>Cards:</strong> ${escapeHtml(cardStr)}</div>`:''}
         ${nativeAppleStr ? `<div style="font-size:12px;margin-top:4px"><strong>Native in Apple Wallet:</strong> ${escapeHtml(nativeAppleStr)}</div>`:''}
@@ -472,8 +509,18 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
 
   function getCheckedValues(cls){ return $$$(`.${cls}:checked`).map(i => i.value); }
 
+  function matchPlace(row, q){
+    if (!q) return true;
+    const s = q.toLowerCase();
+    return (
+      (row.city_or_state || '').toLowerCase().includes(s) ||
+      (row.country || '').toLowerCase().includes(s) ||
+      (row.region || '').toLowerCase().includes(s)
+    );
+  }
+
   function applyFiltersAndRender(){
-    const qC = qCity.value.trim().toLowerCase();
+    const qP = qPlace.value.trim();
     const qCo = qCountry.value.trim().toLowerCase();
     const qR = (qRegionSelect.value || '').trim().toLowerCase();
 
@@ -486,11 +533,11 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
     const visible = [];
     markers.forEach(({marker, row}) => {
       let ok = true;
-      if (qC  && !row.city.toLowerCase().includes(qC)) ok = false;
-      if (ok && qCo && !row.country.toLowerCase().includes(qCo)) ok = false;
+      if (ok && !matchPlace(row, qP)) ok = false;
+      if (ok && qCo && !(row.country||'').toLowerCase().includes(qCo)) ok = false;
       if (ok && qR){
         const reg = (row.region||'').toLowerCase();
-        if (reg !== qR) ok = false; // dropdown exact match
+        if (reg !== qR) ok = false; // exact match for region dropdown
       }
       if (ok && wantContactless.length){
         if (!wantContactless.includes((row.contactless_supported||'').trim())) ok = false;
@@ -515,11 +562,9 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
     if (clusterMode.checked){ map.addLayer(clusterGroup); map.removeLayer(layerGroup); }
     else { map.addLayer(layerGroup); map.removeLayer(clusterGroup); }
 
-    // Count HUD + ticker
-    countEl.textContent = `${visible.length} ${visible.length===1?'city':'cities'}`;
+    countEl.textContent = `${visible.length} ${visible.length===1?'place':'places'}`;
     ticker.style.display = visible.length ? 'block' : 'none';
 
-    // ---- Auto-zoom behavior (no street-level dive) ----
     if (autoZoom.checked && visible.length){
       if (visible.length === 1) {
         const ll = visible[0].getLatLng();
@@ -531,9 +576,7 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
       }
     }
 
-    // Render active filters HUD
     renderHUD();
-    // Persist & URL
     persistState();
     updateURLParams();
   }
@@ -542,7 +585,7 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
     const tags = [];
     const push = (label, clearFn) => tags.push({ label, clearFn });
 
-    if (qCity.value) push(`City: ${qCity.value}`, () => { qCity.value=''; onFilterChanged(); });
+    if (qPlace.value)   push(`Place: ${qPlace.value}`,   () => { qPlace.value=''; onFilterChanged(); });
     if (qCountry.value) push(`Country: ${qCountry.value}`, () => { qCountry.value=''; onFilterChanged(); });
     if (qRegionSelect.value) push(`Region: ${qRegionSelect.value}`, () => { qRegionSelect.value=''; onFilterChanged(); });
 
@@ -562,31 +605,27 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
     });
   }
 
-  // Escape helpers
+  // Helpers
   function escapeHtml(str){ return (str||'').replace(/[&<>\"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s])); }
   function escapeAttr(str){ return escapeHtml(str).replace(/\s/g, '%20'); }
-
-  // Debounce
   function debounce(fn, wait=160){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn.apply(null,a), wait); }; }
   const onFilterChanged = debounce(applyFiltersAndRender, 160);
 
   // Events
-  
-
-  qCity.addEventListener('input', onFilterChanged);
+  qPlace.addEventListener('input', onFilterChanged);
   qCountry.addEventListener('input', onFilterChanged);
   qRegionSelect.addEventListener('change', applyFiltersAndRender);
   autoZoom.addEventListener('change', applyFiltersAndRender);
   clusterMode.addEventListener('change', applyFiltersAndRender);
 
   resetBtn.addEventListener('click', () => {
-    qCity.value = ''; qCountry.value=''; qRegionSelect.value = '';
+    qPlace.value = ''; qCountry.value=''; qRegionSelect.value = '';
     $$$('.chip input').forEach(i => i.checked = false);
     autoZoom.checked = true; clusterMode.checked = true;
     applyFiltersAndRender();
   });
 
-  // --- Theme toggle ---
+  // Theme
   function setTheme(mode){
     document.documentElement.setAttribute('data-theme', mode);
     themeToggle.checked = (mode === 'retro-light');
@@ -594,10 +633,10 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
   }
   themeToggle.addEventListener('change', () => setTheme(themeToggle.checked ? 'retro-light' : 'retro-dark'));
 
-  // --- Keyboard shortcuts ---
+  // Shortcuts
   document.addEventListener('keydown', (e) => {
     const mod = e.metaKey || e.ctrlKey;
-    if (e.key === '/' && !isTypingInField(e)) { e.preventDefault(); qCity.focus(); qCity.select(); }
+    if (e.key === '/' && !isTypingInField(e)) { e.preventDefault(); qPlace.focus(); qPlace.select(); }
     if ((e.key.toLowerCase() === 'k' && mod)) { e.preventDefault(); openPalette(); }
     if (e.key.toLowerCase() === 'r' && !isTypingInField(e)) { e.preventDefault(); resetBtn.click(); }
     if (e.key === '?' && !isTypingInField(e)) { e.preventDefault(); openPalette('?'); }
@@ -607,9 +646,9 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
     return t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.getAttribute('contenteditable') === 'true');
   }
 
-  // --- Command Palette ---
+  // Command palette
   const commands = [
-    { key: 'search city', hint:'Focus city input', run: () => { qCity.focus(); qCity.select(); } },
+    { key: 'search place', hint:'Focus place input', run: () => { qPlace.focus(); qPlace.select(); } },
     { key: 'reset', hint:'Clear all filters', run: () => resetBtn.click() },
     { key: 'toggle theme', hint:'Light/Dark', run: () => themeToggle.click() },
     { key: 'toggle cluster', hint:'Cluster markers on/off', run: () => { clusterMode.checked = !clusterMode.checked; applyFiltersAndRender(); } },
@@ -644,10 +683,10 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
     renderPaletteList(filt.length ? filt : [{key:'No results', hint:'', run:()=>{}}]);
   });
 
-  // --- Persist/Restore + URL params ---
+  // Persist/Restore + URL params
   function persistState(){
     const st = {
-      qCity: qCity.value, qCountry: qCountry.value, qRegion: qRegionSelect.value,
+      qPlace: qPlace.value, qCountry: qCountry.value, qRegion: qRegionSelect.value,
       contactless: getCheckedValues('f-contactless'),
       mobile: getCheckedValues('f-mobile'),
       nativeApple: getCheckedValues('f-native-apple'),
@@ -665,7 +704,7 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
       const st = JSON.parse(raw);
       if (st.theme) setTheme(st.theme);
 
-      qCity.value = st.qCity || ''; qCountry.value = st.qCountry || ''; qRegionSelect.value = st.qRegion || '';
+      qPlace.value = st.qPlace || ''; qCountry.value = st.qCountry || ''; qRegionSelect.value = st.qRegion || '';
       autoZoom.checked = st.autoZoom ?? true; clusterMode.checked = st.clusterMode ?? true;
 
       const setChecks = (cls, vals=[]) => $$$('.'+cls).forEach(i => i.checked = vals.includes(i.value));
@@ -682,7 +721,7 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
   }
   function updateURLParams(){
     const p = new URLSearchParams();
-    if (qCity.value) p.set('city', qCity.value);
+    if (qPlace.value) p.set('place', qPlace.value);
     if (qCountry.value) p.set('country', qCountry.value);
     if (qRegionSelect.value) p.set('region', qRegionSelect.value);
     const push = (k, arr) => { if (arr.length) p.set(k, arr.join(',')); };
@@ -700,7 +739,7 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
   }
   function restoreStateFromURL(){
     const p = new URLSearchParams(location.search);
-    if (p.get('city')) qCity.value = p.get('city');
+    if (p.get('place')) qPlace.value = p.get('place');
     if (p.get('country')) qCountry.value = p.get('country');
     if (p.get('region')) qRegionSelect.value = p.get('region');
 
@@ -729,10 +768,9 @@ London,United Kingdom,Europe,51.5074,-0.1278,Yes,Yes,"Visa; Mastercard; AmEx",Ye
     });
   }
 
-  // Update URL when panning/zooming (debounced)
   map.on('moveend zoomend', debounce(updateURLParams, 200));
 
-  // Boot theme
+  // Theme boot
   const savedTheme = localStorage.getItem('gctm_theme');
   if (savedTheme) setTheme(savedTheme); else setTheme('retro-dark');
 
